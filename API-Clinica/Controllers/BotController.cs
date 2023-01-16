@@ -16,7 +16,7 @@ namespace API_Clinica.Controllers
         [HttpGet]
         public object Get(Credentials_Request bot)
         {
-
+       
             var Id = bot.Id;
             var Text = bot.Text;
             var Data = bot.Data;
@@ -44,13 +44,13 @@ namespace API_Clinica.Controllers
                 Attachments = new Attachments
                 {
                     Position = "AFTER",  //copiei pdf
-                    Type = "D O C U M E N T",
-                    Name = Name,
+                    Type = "DOCUMENT",
+                    Name = "invoice.pdf",
                     Url = "https/teste.com.br"
 
                 },
                 Type = "INFORMATION",
-                Text = Text + "teste aonde vc pode escrever o que quiser",
+                Text =  "Segue seu boleto",
 
             };
 
