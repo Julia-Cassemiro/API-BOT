@@ -9,6 +9,8 @@ namespace API_Clinica.Model
 
         [JsonProperty("id")]
         public int Id { get; set; }
+        [JsonProperty("clienteId")]
+        public int ClienteId { get; set; }
         [JsonProperty("text")]
 
         public string Text { get; set; }
@@ -22,7 +24,7 @@ namespace API_Clinica.Model
     public class Contact
     {
         [JsonProperty("uid")]
-        public string Uid { get; set; }
+        public int Uid { get; set; }
 
         [JsonProperty("type")]
         public string Type { get; set; }
@@ -40,6 +42,12 @@ namespace API_Clinica.Model
         [JsonProperty("celular")]
 
         public string Celular { get; set; }
+
+        [JsonProperty("dataDeNascimento")]
+        public string DataDeNascimento { get; set; }
+
+        [JsonProperty("email")]
+        public string Email { get; set; }
 
     }
     
