@@ -1,13 +1,16 @@
 ﻿using API_Clinica.Model;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace API_Clinica.Controllers
+namespace PEC.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -16,7 +19,7 @@ namespace API_Clinica.Controllers
         [HttpGet]
         public object Get(Credentials_Request bot)
         {
-       
+
             var Id = bot.Id;
             var Text = bot.Text;
             var Data = bot.Data;
@@ -39,23 +42,23 @@ namespace API_Clinica.Controllers
             //O QUE RETORNAR DESSE WHERE
             //VCS PODEM COLOCAR NA RESPONSE.
 
-            var response = new Credentials_Response
-            {
-                Attachments = new Attachments
-                {
-                    Position = "AFTER",  //copiei pdf
-                    Type = "DOCUMENT",
-                    Name = "invoice.pdf",
-                    Url = "https/teste.com.br"
+            //var response = new Credentials_Response
+            //{
+            //    Attachments = new Attachments
+            //    {
+            //        Position = "AFTER",  //copiei pdf
+            //        Type = "DOCUMENT",
+            //        Name = "invoice.pdf",
+            //        Url = "https/teste.com.br"
 
-                },
-                Type = "INFORMATION",
-                Text =  "Segue seu boleto",
+            //    },
+            //    Type = "INFORMATION",
+            //    Text = "Segue seu boleto",
 
-            };
+            //};
 
-            var teste = response;
-            return new JsonResult(teste);
+            //var teste = response;
+            return new JsonResult("aaa");
         }
 
         // POST api/<BotController>
@@ -66,13 +69,13 @@ namespace API_Clinica.Controllers
             var Text = bot.Text;
             var Data = bot.Data;
 
-            
+
             var Contact = bot.Contact;
             var uid = Contact.Uid;
             var type = Contact.Type;
             var Key = Contact.Key;
             var Name = Contact.Name;
-            
+
 
             var Fields = Contact.Fields;
             var CPF = Fields.Cpf;
@@ -84,23 +87,150 @@ namespace API_Clinica.Controllers
             //O QUE RETORNAR DESSE WHERE
             //VCS PODEM COLOCAR NA RESPONSE.
 
-            var response = new Credentials_Response
+            //var response_information = new Credentials_Response
+            //{
+            //Attachments = new Attachments
+            //{
+            //    Position = "AFTER",  //copiei pdf
+            //    Type = "D O C U M E N T",
+            //    Name = Name,
+            //    Url = "https/teste.com.br"
+
+            //},
+            //    Type = "INFORMATION",
+            //    Text = Text + "teste aonde vc pode escrever o que quiser",
+
+            //};
+
+            //var response_menu = new Credentials_Response
+            //{
+            //    Items = new {Items = new []
+            //    {
+            //        new {n}
+            //    }
+            //    }
+            //    //{
+
+
+
+            //        //Number = 1,  //copiei pdf
+            //        //Text = "Menu 1",
+            //        //Callback = new Callback
+            //        //{
+            //        //    Endpoint = "https://yourdomain.com/api/menu_1",
+            //        //    Data = new Data2
+            //        //    {
+            //        //        Example = "Additional information"
+
+            //        //    }
+
+            //        //}
+
+            //    //},
+            //    Attachments = new Attachments
+            //    {
+            //        Position = "AFTER",  //copiei pdf
+            //        Type = "D O C U M E N T",
+            //        Name = Name,
+            //        Url = "https/teste.com.br"
+
+            //    },
+            //    Type = "MENU",
+            //    Text = "Escolha uma especialidade:",
+
+            //};
+
+            //var attachments_json = new
+            //{
+            //    position = "BEFORE",  //copiei pdf
+            //    type = "IMAGE",
+            //    name = "image.png",
+            //    url = "https://yourdomain.com/cdn/logo.png"
+            //};
+            //var data_json = new
+            //{
+            //    example = "Additional information"
+            //};
+
+            //var callback_json = new
+            //{
+            //    endpoint = "https://yourdomain.com/api/menu_1",
+            //    data = data_json
+            //};
+            //var itens_json = new
+            //{
+            //    number = 1,  //copiei pdf
+            //    text = "Menu 1",
+            //    callback = callback_json,
+
+            //};
+
+
+
+            //var objeto = new
+            //{
+            //    Type = "MENU",
+            //    Text = "Escolha uma especialidade:",
+            //    attachments =  attachments_json,
+            //    items = itens_json,
+            //};
+
+            Attachment attachment = new Attachment()
             {
-                Attachments = new Attachments
-                {
-                    Position = "AFTER",  //copiei pdf
-                    Type = "D O C U M E N T",
-                    Name = Name,
-                    Url = "https/teste.com.br"
-
-                },
-                Type = "INFORMATION",
-                Text = Text + "teste aonde vc pode escrever o que quiser",
-
+                position = "",
+                type = "",
+                name = "",
+                url = "",
             };
 
-            var teste = response;
-            return new JsonResult(teste);
+            Callback callback = new Callback()
+            {
+                endpoint = "",
+                data = new Data2()
+                {
+                    example = "",
+                },
+            };
+
+            Data2 data = new Data2()
+            {
+                example = "",
+            };
+
+            Item item = new Item()
+            {
+                number = 1,
+                text = "",
+                callback = new Callback()
+                {
+                    endpoint = "",
+                    data = new Data2()
+                    {
+                        example = "",
+                    },
+                },
+                //number = 2,
+                //text = "",
+                //callback = new Callback()
+                //{
+                //    endpoint = "",
+                //    data = new Data2()
+                //    {
+                //        example = "",
+                //    },
+                //},
+            };
+
+
+            var response_teste = new Root()
+            {
+                type = "",
+                text = "",
+                attachments = new List<Attachment>(),
+                items = new List<Item>(),
+            };
+
+            return new JsonResult(response_teste);
         }
 
 
