@@ -61,6 +61,22 @@ namespace PEC.Controllers
             return new JsonResult("aaa");
         }
 
+        public class Callback
+        {
+            public string endpoint { get; set; }
+            public Data data { get; set; }
+        }
+        public class Data
+        {
+            public string example { get; set; }
+        }
+        public class Items
+        {
+            public int number { get; set; }
+            public string text { get; set; }
+            public Callback callback { get; set; }
+        }
+
         // POST api/<BotController>
         [HttpPost]
         public object Post(Credentials_Request bot)
@@ -175,62 +191,68 @@ namespace PEC.Controllers
             //    items = itens_json,
             //};
 
-            Attachment attachment = new Attachment()
+            var body = new
             {
-                position = "",
-                type = "",
-                name = "",
-                url = "",
-            };
 
-            Callback callback = new Callback()
-            {
-                endpoint = "",
-                data = new Data2()
+                type = "MENU",
+                text = "My first menu integration.",
+                attachments = new[]
                 {
-                    example = "",
+                    new
+                     {
+                    position = "BEFORE",
+                    type = "IMAGE",
+                    name = "image.png",
+                    url = "https://yourdomain.com/cdn/logo.png"
+                }
                 },
+
+                items = new[]
+                       {
+                             new
+                             {
+                                number = 1,
+                                 text = "CARDIO",
+                                 callback = new Callback()
+                                 {
+                                     endpoint = "https://yourdomain.com/api/menu_1",
+                                     data = new Data()
+                                     {
+                                         example = "Especialidade Cardio (text, text text..)",
+                                     },
+                                 },
+                             },
+                             new
+                             {
+                                 number = 2,
+                                 text = " CLINICO GERAL",
+                                 callback = new Callback()
+                                 {
+                                     endpoint = "https://yourdomain.com/api/menu_1",
+                                     data = new Data()
+                                     {
+                                         example = "Especialidade CLINICO GERAL (text, text text..)",
+                                     },
+                                 },
+                             },
+                             new
+                             {
+                                 number = 3,
+                                 text = " DERMATO",
+                                 callback = new Callback()
+                                 {
+                                     endpoint = "https://yourdomain.com/api/menu_1",
+                                     data = new Data()
+                                     {
+                                         example = "Especialidade DERMATO (text, text text..)",
+                                     },
+                                 },
+                             },
+                         }
+
             };
 
-            Data2 data = new Data2()
-            {
-                example = "",
-            };
-
-            Item item = new Item()
-            {
-                number = 1,
-                text = "",
-                callback = new Callback()
-                {
-                    endpoint = "",
-                    data = new Data2()
-                    {
-                        example = "",
-                    },
-                },
-                //number = 2,
-                //text = "",
-                //callback = new Callback()
-                //{
-                //    endpoint = "",
-                //    data = new Data2()
-                //    {
-                //        example = "",
-                //    },
-                //},
-            };
-
-
-            var response_teste = new Root()
-            {
-                type = "",
-                text = "",
-                attachments = new List<Attachment>(),
-                items = new List<Item>(),
-            };
-
-            return new JsonResult(response_teste);
+            return new JsonResult(body);
         }
 
 

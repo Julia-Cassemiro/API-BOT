@@ -12,7 +12,7 @@ namespace API_Clinica.Model
 
     //    public string Text { get; set; }
     //    public Attachments Attachments { get; set; }
-    //    public Items Items { get; set; }
+    //    public Item Item { get; set; }
 
 
     //}
@@ -30,17 +30,11 @@ namespace API_Clinica.Model
     //    public string Url { get; set; }
     //}
 
-    //public class Items
+    //public class Item
     //{
-    //    [JsonProperty("number")]
-    //    public int Number { get; set; }
-
-    //    [JsonProperty("text")]
-    //    public string Text { get; set; }
-
-    //    public Callback Callback { get; set; }
-
-
+    //    public int number { get; set; }
+    //    public string text { get; set; }
+    //    public Callback callback { get; set; }
     //}
 
     //public class Callback
@@ -60,37 +54,37 @@ namespace API_Clinica.Model
 
     //}
 
-    public class Attachment
-    {
-        public string position { get; set; }
-        public string type { get; set; }
-        public string name { get; set; }
-        public string url { get; set; }
-    }
+    //public class Attachment
+    //{
+    //    public string position { get; set; }
+    //    public string type { get; set; }
+    //    public string name { get; set; }
+    //    public string url { get; set; }
+    //}
 
-    public class Callback
-    {
-        public string endpoint { get; set; }
-        public Data2 data { get; set; }
-    }
+    //public class Callback
+    //{
+    //    public string endpoint { get; set; }
+    //    public Data2 data { get; set; }
+    //}
 
-    public class Data2
-    {
-        public string example { get; set; }
-    }
+    //public class Data2
+    //{
+    //    public string example { get; set; }
+    //}
 
-    public class Item
-    {
-        public int number { get; set; }
-        public string text { get; set; }
-        public Callback callback { get; set; }
-    }
+    //public class Item
+    //{
+    //    public int number { get; set; }
+    //    public string text { get; set; }
+    //    public Callback callback { get; set; }
+    //}
 
-    public class Root
-    {
-        public string type { get; set; }
-        public string text { get; set; }
-        public List<Attachment> attachments { get; set; }
-        public List<Item> items { get; set; }
-    }
+    //public class Root
+    //{
+    //    public string type { get; set; }
+    //    public string text { get; set; }
+    //    public List<Attachment> attachments { get; set; }
+    //    public List<Item> items { get; set; }
+    //}
 }
